@@ -155,4 +155,8 @@ REST_FRAMEWORK = {
 CORS_ALLOW_ALL_ORIGINS = True # For development, restrict in production
 
 # CSRF Trusted Origins
-CSRF_TRUSTED_ORIGINS = ['https://*.render.com', 'https://*.railway.app'] 
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.render.com', 
+    'https://*.railway.app', 
+    'https://excellenceeniola.fly.dev'
+]
