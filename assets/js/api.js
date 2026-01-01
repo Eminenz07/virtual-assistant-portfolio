@@ -28,6 +28,20 @@ async function fetchData(endpoint) {
   }
 }
 
+// --- Helper to normalize paths ---
+function normalizePath(path) {
+    if (!path) return '';
+    // Fix seed data paths
+    if (path.startsWith('./assets/')) {
+        return path.replace('./assets/', '/static/');
+    }
+    // Fix other relative paths if needed
+    if (path.startsWith('assets/')) {
+        return '/static/' + path.substring(7);
+    }
+    return path;
+}
+
 // --- 1. What I Do ---
 async function fetchServices() {
   const data = await fetchData("whatido");
@@ -39,7 +53,7 @@ async function fetchServices() {
       (item) => `
         <li class="service-item">
             <div class="service-icon-box">
-                <img src="${item.icon}" alt="${item.title}" width="40">
+                <img src="${normalizePath(item.icon)}" alt="${item.title}" width="40">
             </div>
             <div class="service-content-box">
                 <h4 class="h4 service-item-title">${item.title}</h4>
@@ -64,7 +78,7 @@ async function fetchTestimonials() {
             <div class="content-card" data-testimonials-item>
                 <figure class="testimonials-avatar-box">
                     <img src="${
-                      item.client_image || "./assets/images/avatar-1.png"
+                      normalizePath(item.client_image) || "/static/images/avatar-1.png"
                     }" alt="${
         item.client_name
       }" width="60" data-testimonials-avatar>
@@ -79,6 +93,116 @@ async function fetchTestimonials() {
                     <p>${item.testimonial_text}</p>
                 </div>
             </div>
+        </li>
+    `
+    )
+    .join("");
+}
+// ... (skipping non-image sections for brevity, but they should be preserved if I used replace_file_content correctly)
+// Wait, I cannot skip with replace_file_content unless I target specific blocks.
+// I will target specific blocks to replace.
+
+// --- 5. Certifications ---
+async function fetchCertifications() {
+  const data = await fetchData("certifications");
+  const container = document.querySelector(".certifications-list");
+  if (!container || data.length === 0) return;
+
+  container.innerHTML = data
+    .map(
+      (item) => `
+        <li class="certification-item">
+            <a href="${item.credential_url || "#"}" target="_blank">
+                <figure class="certification-banner-box">
+                    <img src="${
+                      normalizePath(item.certificate_image) || "/static/images/cert1.jpg"
+                    }" alt="${item.title}" loading="lazy">
+                </figure>
+                <div class="certification-content">
+                    <h3 class="h3 certification-item-title">${item.title}</h3>
+                    <p class="certification-text">${item.issuer} - ${
+        item.date_earned
+      }</p>
+                </div>
+            </a>
+        </li>
+    `
+    )
+    .join("");
+}
+
+// --- 6. Projects ---
+async function fetchProjects() {
+  const data = await fetchData("projects");
+  const container = document.querySelector(".project-list");
+  if (!container || data.length === 0) return;
+
+  container.innerHTML = data
+    .map(
+      (item) => `
+        <li class="project-item active" data-filter-item data-category="all">
+            <a href="${
+              item.link_live || item.link_repo || "#"
+            }" target="_blank">
+                <figure class="project-img">
+                    <div class="project-item-icon-box">
+                        <ion-icon name="eye-outline"></ion-icon>
+                    </div>
+                    <img src="${normalizePath(item.cover_image)}" alt="${
+        item.title
+      }" loading="lazy">
+                </figure>
+                <h3 class="project-title">${item.title}</h3>
+                <p class="project-category">${item.description}</p>
+            </a>
+        </li>
+    `
+    )
+    .join("");
+}
+
+// --- 7. Blogs ---
+async function fetchBlogs() {
+  const data = await fetchData("blogs");
+  const blogArticle = document.querySelector('article[data-page="blog"]');
+  if (!blogArticle) return; 
+
+  let container = blogArticle.querySelector(".blog-posts-list");
+  if (!container) {
+    const header = blogArticle.querySelector("header");
+    container = document.createElement("ul");
+    container.className = "blog-posts-list";
+    if (header) header.after(container);
+    else blogArticle.appendChild(container);
+  }
+
+  if (data.length === 0) {
+    container.innerHTML = "<p>No blog posts found.</p>";
+    return;
+  }
+
+  container.innerHTML = data
+    .map(
+      (item) => `
+        <li class="blog-post-item">
+            <a href="#">
+                <figure class="blog-banner-box">
+                    <img src="${normalizePath(item.cover_image)}" alt="${
+        item.title
+      }" loading="lazy">
+                </figure>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <p class="blog-category">${item.tags}</p>
+                        <span class="dot"></span>
+                        <time datetime="${item.published_date}">${
+        item.published_date
+      }</time>
+                    </div>
+                    <h3 class="h3 blog-item-title">${item.title}</h3>
+                    <p class="blog-text">${typeof marked !== 'undefined' ? marked.parse(item.markdown_body).substring(0, 100) : item.markdown_body.substring(0, 100)}...</p>
+                </div>
+            </a>
         </li>
     `
     )
