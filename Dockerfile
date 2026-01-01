@@ -19,6 +19,5 @@ WORKDIR /app/portfolio_cms
 RUN python manage.py collectstatic --noinput
 
 # Run gunicorn
-# We go back to root for context transparency or stay in portfolio_cms
-# Gunicorn needs to find the module.
-CMD ["gunicorn", "portfolio_cms.wsgi:application", "--bind", "0.0.0.0:8000"]
+# We chain migrations here because we are using SQLite on Fly.io (no separate release VM)
+CMD ["sh", "-c", "python manage.py migrate && python manage.py ensure_admin && gunicorn portfolio_cms.wsgi:application --bind 0.0.0.0:8000"]
