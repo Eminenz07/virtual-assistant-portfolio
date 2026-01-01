@@ -50,6 +50,8 @@ def dashboard_home(request):
         'experience': Experience.objects.count(),
         'projects': Project.objects.count(),
         'blogs': BlogPost.objects.count(),
+        'skills': Skill.objects.count(),
+        'certifications': Certification.objects.count(),
     }
     return render(request, 'core/dashboard_home.html', {'counts': counts})
 

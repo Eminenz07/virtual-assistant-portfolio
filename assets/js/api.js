@@ -184,23 +184,23 @@ async function fetchBlogs() {
   container.innerHTML = data
     .map(
       (item) => `
-        <li class="blog-post-item">
+        <li class="research-post-item">
             <a href="#">
-                <figure class="blog-banner-box">
+                <figure class="research-banner-box">
                     <img src="${normalizePath(item.cover_image)}" alt="${
         item.title
       }" loading="lazy">
                 </figure>
-                <div class="blog-content">
-                    <div class="blog-meta">
-                        <p class="blog-category">${item.tags}</p>
+                <div class="research-content">
+                    <div class="research-meta">
+                        <p class="research-category">${item.tags}</p>
                         <span class="dot"></span>
                         <time datetime="${item.published_date}">${
         item.published_date
       }</time>
                     </div>
-                    <h3 class="h3 blog-item-title">${item.title}</h3>
-                    <p class="blog-text">${typeof marked !== 'undefined' ? marked.parse(item.markdown_body).substring(0, 100) : item.markdown_body.substring(0, 100)}...</p>
+                    <h3 class="h3 research-item-title">${item.title}</h3>
+                    <p class="research-text">${typeof marked !== 'undefined' ? marked.parse(item.markdown_body).substring(0, 100) : item.markdown_body.substring(0, 100)}...</p>
                 </div>
             </a>
         </li>

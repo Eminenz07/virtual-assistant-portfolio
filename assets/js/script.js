@@ -57,20 +57,18 @@ const testimonialsModalFunc = function () {
 }
 
 // add click event to all modal items
-for (let i = 0; i < testimonialsItem.length; i++) {
-
-  testimonialsItem[i].addEventListener("click", function () {
-
-    modalImg.src = this.querySelector("[data-testimonials-avatar]").src;
-    modalImg.alt = this.querySelector("[data-testimonials-avatar]").alt;
-    modalTitle.innerHTML = this.querySelector("[data-testimonials-title]").innerHTML;
-    modalText.innerHTML = this.querySelector("[data-testimonials-text]").innerHTML;
+// Event Delegation for testimonials modal
+document.addEventListener('click', function(e) {
+  const item = e.target.closest('[data-testimonials-item]');
+  if (item) {
+    modalImg.src = item.querySelector("[data-testimonials-avatar]").src;
+    modalImg.alt = item.querySelector("[data-testimonials-avatar]").alt;
+    modalTitle.innerHTML = item.querySelector("[data-testimonials-title]").innerHTML;
+    modalText.innerHTML = item.querySelector("[data-testimonials-text]").innerHTML;
 
     testimonialsModalFunc();
-
-  });
-
-}
+  }
+});
 
 // add click event to modal close button
 modalCloseBtn.addEventListener("click", testimonialsModalFunc);
