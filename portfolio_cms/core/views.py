@@ -16,7 +16,7 @@ from projects.models import Project
 from blogs.models import BlogPost
 
 def root_redirect(request):
-    return redirect('dashboard_home')
+    return render(request, 'index.html')
 
 def dashboard_login(request):
     if request.user.is_authenticated:

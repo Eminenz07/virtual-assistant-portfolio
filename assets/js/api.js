@@ -3,7 +3,7 @@
  * Fetches content from Django backend and renders it dynamically.
  */
 
-const API_BASE_URL = "http://localhost:8000/api";
+const API_BASE_URL = 'https://excellenceeniola.fly.dev/api';
 // const API_BASE_URL = 'https://your-production-url.com/api'; // Change for production
 
 document.addEventListener("DOMContentLoaded", () => {
