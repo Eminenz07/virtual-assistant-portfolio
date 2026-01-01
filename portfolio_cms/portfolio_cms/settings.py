@@ -87,6 +87,10 @@ DATABASES = {
     }
 }
 
+# Use persistent volume in production (Fly.io)
+if os.path.exists('/data'):
+    DATABASES['default']['NAME'] = Path('/data') / 'db.sqlite3'
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
