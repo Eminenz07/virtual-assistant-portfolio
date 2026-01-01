@@ -1,0 +1,10 @@
+Django>=4.2,<5.3
+djangorestframework
+django-cors-headers
+Pillow
+markdown
+django-filter
+django-htmx
+whitenoise
+gunicorn
+psycopg2-binary

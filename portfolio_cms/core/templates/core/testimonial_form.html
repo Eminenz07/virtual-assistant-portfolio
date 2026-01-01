@@ -1,0 +1,16 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">{% if form.instance.pk %}Edit{% else %}Add{% endif %} Testimonial</h1>
+</div>
+
+<form method="post" enctype="multipart/form-data" class="w-50">
+    {% csrf_token %}
+    <div class="mb-3">
+        {{ form.as_p }}
+    </div>
+    <button type="submit" class="btn btn-success">Save</button>
+    <a href="{% url 'testimonial_list' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}
