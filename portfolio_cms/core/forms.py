@@ -15,7 +15,10 @@ class ServiceForm(forms.ModelForm):
 class TestimonialForm(forms.ModelForm):
     class Meta:
         model = Testimonial
-        fields = ['client_name', 'designation', 'testimonial_text', 'gender']
+        fields = ['client_name', 'designation', 'testimonial_text', 'gender', 'testimonial_date']
+        widgets = {
+            'testimonial_date': forms.DateInput(attrs={'type': 'date'}),
+        }
 
 class ExperienceForm(forms.ModelForm):
     class Meta:
