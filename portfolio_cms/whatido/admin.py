@@ -3,5 +3,5 @@ from .models import Service
 
 @admin.register(Service)
 class ServiceAdmin(admin.ModelAdmin):
-    list_display = ('title', 'icon')
+    list_display = ('title', 'icon_name')
     search_fields = ('title',)
