@@ -193,7 +193,7 @@ async function fetchBlogs() {
         <li class="research-post-item">
             <a href="#">
                 <figure class="research-banner-box">
-                    <img src="${normalizePath(item.cover_image)}" alt="${
+                    <img src="${normalizePath(item.cover_image) || '/static/images/blog1.png'}" alt="${
         item.title
       }" loading="lazy">
                 </figure>
