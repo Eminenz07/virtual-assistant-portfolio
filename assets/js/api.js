@@ -191,7 +191,7 @@ async function fetchBlogs() {
     .map(
       (item) => `
         <li class="research-post-item">
-            <a href="#">
+            <a href="${item.link || '#'}" target="_blank">
                 <figure class="research-banner-box">
                     <img src="${normalizePath(item.cover_image) || '/static/images/blog1.png'}" alt="${
         item.title

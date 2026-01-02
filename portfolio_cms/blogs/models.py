@@ -8,6 +8,7 @@ class BlogPost(models.Model):
     markdown_body = models.TextField(help_text="Write content in Markdown")
     tags = models.CharField(max_length=200, help_text="Comma separated tags")
     published_date = models.DateField()
+    link = models.URLField(blank=True, null=True, help_text="External link to the full article")
     is_published = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
