@@ -8,6 +8,8 @@ class Testimonial(models.Model):
     client_name = models.CharField(max_length=200)
     designation = models.CharField(max_length=200)
     testimonial_text = models.TextField()
+    gender = models.CharField(max_length=10, choices=GENDER_CHOICES, default='Male')
+    client_image = models.CharField(max_length=255, blank=True, null=True, help_text="Auto-assigned based on gender")
     # Use timezone.now or datetime.date.today
     testimonial_date = models.DateField(blank=True, null=True, help_text="Date of testimonial")
 
