@@ -61,10 +61,25 @@ const testimonialsModalFunc = function () {
 document.addEventListener('click', function(e) {
   const item = e.target.closest('[data-testimonials-item]');
   if (item) {
+    const dateElem = item.querySelector("[data-testimonials-date]");
+    const modalDateElem = document.querySelector("[data-modal-date]");
+
     modalImg.src = item.querySelector("[data-testimonials-avatar]").src;
     modalImg.alt = item.querySelector("[data-testimonials-avatar]").alt;
     modalTitle.innerHTML = item.querySelector("[data-testimonials-title]").innerHTML;
     modalText.innerHTML = item.querySelector("[data-testimonials-text]").innerHTML;
+
+    if (modalDateElem && dateElem) {
+        const rawDate = dateElem.getAttribute('data-testimonials-date');
+        if (rawDate) {
+             const dateObj = new Date(rawDate);
+             modalDateElem.innerHTML = dateObj.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+             modalDateElem.setAttribute('datetime', rawDate);
+             modalDateElem.style.display = 'block';
+        } else {
+             modalDateElem.style.display = 'none';
+        }
+    }
 
     testimonialsModalFunc();
   }
