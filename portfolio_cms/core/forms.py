@@ -42,7 +42,7 @@ class CertificationForm(forms.ModelForm):
 class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
-        fields = '__all__'
+        fields = ['title', 'description', 'year', 'link_live', 'cover_image']
 
 class BlogPostForm(forms.ModelForm):
     class Meta:
