@@ -78,7 +78,7 @@ async function fetchTestimonials() {
             <div class="content-card" data-testimonials-item>
                 <figure class="testimonials-avatar-box">
                     <img src="${
-                      normalizePath(item.client_image) || "/static/images/avatar-1.png"
+                      normalizePath(item.client_image) || (item.gender === 'Female' ? "/static/images/avatar-2.png" : "/static/images/avatar-1.png")
                     }" alt="${
         item.client_name
       }" width="60" data-testimonials-avatar>
