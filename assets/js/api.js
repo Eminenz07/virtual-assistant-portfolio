@@ -97,7 +97,7 @@ async function fetchTestimonials() {
                 <h5 class="h5 testimonials-item-sub-title" data-testimonials-title>${
                   item.designation
                 }</h5>
-                ${item.testimonial_date ? `<p class="testimonials-date" style="font-size: 0.8em; color: var(--light-gray-70); margin-bottom: 10px;">${new Date(item.testimonial_date).toLocaleDateString()}</p>` : ''}
+                <div data-testimonials-date="${item.testimonial_date || ''}" hidden></div>
                 <div class="testimonials-text" data-testimonials-text>
                     <p>${item.testimonial_text}</p>
                 </div>
