@@ -1,40 +1,51 @@
-{% extends 'core/base.html' %}
-
-{% block content %}
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Projects</h1>
-    <div class="btn-toolbar mb-2 mb-md-0">
-        <a href="{% url 'project_create' %}" class="btn btn-sm btn-outline-primary"><i class="bi bi-plus"></i> Add New</a>
-    </div>
+{% extends 'core/base.html' %} {% block content %}
+<div
+  class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+>
+  <h1 class="h2">Projects</h1>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <a href="{% url 'project_create' %}" class="btn btn-sm btn-outline-primary"
+      ><i class="bi bi-plus"></i> Add New</a
+    >
+  </div>
 </div>
 
 <div class="table-responsive">
-    <table class="table table-striped table-sm">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Year</th>
-                <th>Live Link</th>
-                <th>Repo Link</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in items %}
-            <tr>
-                <td>{{ item.title }}</td>
-                <td>{{ item.year }}</td>
-                <td><a href="{{ item.link_live }}" target="_blank">View</a></td>
-                <td><a href="{{ item.link_repo }}" target="_blank">Repo</a></td>
-                <td>
-                    <a href="{% url 'project_edit' pk=item.pk %}" class="btn btn-sm btn-primary"><i class="bi bi-pencil"></i></a>
-                    <a href="{% url 'project_delete' pk=item.pk %}" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></a>
-                </td>
-            </tr>
-            {% empty %}
-            <tr><td colspan="5">No projects found.</td></tr>
-            {% endfor %}
-        </tbody>
-    </table>
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Year</th>
+        <th>Live Link</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in items %}
+      <tr>
+        <td>{{ item.title }}</td>
+        <td>{{ item.year }}</td>
+        <td><a href="{{ item.link_live }}" target="_blank">View</a></td>
+        <td><a href="{{ item.link_repo }}" target="_blank">Repo</a></td>
+        <td>
+          <a
+            href="{% url 'project_edit' pk=item.pk %}"
+            class="btn btn-sm btn-primary"
+            ><i class="bi bi-pencil"></i
+          ></a>
+          <a
+            href="{% url 'project_delete' pk=item.pk %}"
+            class="btn btn-sm btn-danger"
+            ><i class="bi bi-trash"></i
+          ></a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="5">No projects found.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </div>
 {% endblock %}
