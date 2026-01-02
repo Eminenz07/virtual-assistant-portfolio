@@ -53,7 +53,7 @@ async function fetchServices() {
       (item) => `
         <li class="service-item">
             <div class="service-icon-box">
-                <img src="${normalizePath(item.icon)}" alt="${item.title}" width="40">
+                <ion-icon name="${item.icon_name || 'create-outline'}"></ion-icon>
             </div>
             <div class="service-content-box">
                 <h4 class="h4 service-item-title">${item.title}</h4>
