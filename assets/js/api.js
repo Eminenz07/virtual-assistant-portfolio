@@ -167,11 +167,11 @@ async function fetchBlogs() {
   const blogArticle = document.querySelector('article[data-page="blog"]');
   if (!blogArticle) return; 
 
-  let container = blogArticle.querySelector(".blog-posts-list");
+  let container = blogArticle.querySelector(".research-posts-list");
   if (!container) {
     const header = blogArticle.querySelector("header");
     container = document.createElement("ul");
-    container.className = "blog-posts-list";
+    container.className = "research-posts-list";
     if (header) header.after(container);
     else blogArticle.appendChild(container);
   }
