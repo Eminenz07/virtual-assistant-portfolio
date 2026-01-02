@@ -26,7 +26,6 @@
         <td>{{ item.title }}</td>
         <td>{{ item.year }}</td>
         <td><a href="{{ item.link_live }}" target="_blank">View</a></td>
-        <td><a href="{{ item.link_repo }}" target="_blank">Repo</a></td>
         <td>
           <a
             href="{% url 'project_edit' pk=item.pk %}"
