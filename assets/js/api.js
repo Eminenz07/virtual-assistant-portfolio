@@ -72,12 +72,6 @@ async function fetchTestimonials() {
   if (!container || data.length === 0) return;
 
   container.innerHTML = data
-    .map(
-      (item) => `
-        <li class="testimonials-item">
-            <div class="content-card" data-testimonials-item>
-                <figure class="testimonials-avatar-box">
-  container.innerHTML = data
     .map((item) => {
       // Randomize default avatar based on gender
       let defaultAvatar;
@@ -112,9 +106,6 @@ async function fetchTestimonials() {
     })
     .join("");
 }
-// ... (skipping non-image sections for brevity, but they should be preserved if I used replace_file_content correctly)
-// Wait, I cannot skip with replace_file_content unless I target specific blocks.
-// I will target specific blocks to replace.
 
 // --- 5. Certifications ---
 async function fetchCertifications() {
