@@ -77,8 +77,22 @@ async function fetchTestimonials() {
         <li class="testimonials-item">
             <div class="content-card" data-testimonials-item>
                 <figure class="testimonials-avatar-box">
+  container.innerHTML = data
+    .map((item) => {
+      // Randomize default avatar based on gender
+      let defaultAvatar;
+      if (item.gender === "Female") {
+        defaultAvatar = Math.random() > 0.5 ? "/static/images/avatar-2.png" : "/static/images/avatar-3.png";
+      } else {
+        defaultAvatar = Math.random() > 0.5 ? "/static/images/avatar-1.png" : "/static/images/avatar-4.png";
+      }
+
+      return `
+        <li class="testimonials-item">
+            <div class="content-card" data-testimonials-item>
+                <figure class="testimonials-avatar-box">
                     <img src="${
-                      normalizePath(item.client_image) || (item.gender === 'Female' ? "/static/images/avatar-2.png" : "/static/images/avatar-1.png")
+                      normalizePath(item.client_image) || defaultAvatar
                     }" alt="${
         item.client_name
       }" width="60" data-testimonials-avatar>
@@ -94,8 +108,8 @@ async function fetchTestimonials() {
                 </div>
             </div>
         </li>
-    `
-    )
+    `;
+    })
     .join("");
 }
 // ... (skipping non-image sections for brevity, but they should be preserved if I used replace_file_content correctly)
