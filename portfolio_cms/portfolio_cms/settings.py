@@ -33,8 +33,6 @@ INSTALLED_APPS = [
     'corsheaders',
     'django_filters',
     'django_htmx',
-    'cloudinary_storage',
-    'cloudinary',
 
     # Local
     'core',
