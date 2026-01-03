@@ -8,3 +8,5 @@ django-htmx
 whitenoise
 gunicorn
 psycopg2-binary
+cloudinary
+django-cloudinary-storage

@@ -31,6 +31,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'django_filters',
     'django_htmx',
+    'cloudinary_storage',
+    'cloudinary',
 
     # Local
     'core',
@@ -136,6 +138,14 @@ STATICFILES_DIRS = [
 # Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+# Cloudinary Configuration
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME', 'dg28aohu0'),
+    'API_KEY': os.environ.get('CLOUDINARY_API_KEY', '424367429367357'),
+    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET', 'hEpfvh009SQGZDa1uJJw0L879-8'),
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
