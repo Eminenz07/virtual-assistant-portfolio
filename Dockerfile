@@ -19,4 +19,4 @@ WORKDIR /app/portfolio_cms
 # RUN python manage.py collectstatic --noinput
 
 # --- AND HERE: Added it to CMD to run at startup ---
-CMD ["sh", "-c", "python manage.py collectstatic --noinput && python manage.py migrate && python manage.py ensure_admin && gunicorn portfolio_cms.wsgi:application --bind 0.0.0.0:8000"]
+CMD ["sh", "-c", "python manage.py collectstatic --noinput -v 2 && python manage.py migrate && python manage.py ensure_admin && gunicorn portfolio_cms.wsgi:application --bind 0.0.0.0:8000"]
