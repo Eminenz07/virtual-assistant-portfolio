@@ -131,26 +131,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# DEBUG STATIC FILES
-print(f"DEBUG: BASE_DIR is {BASE_DIR}")
-ASSETS_DIR = BASE_DIR.parent / 'assets'
-print(f"DEBUG: Assets path is {ASSETS_DIR}")
-if ASSETS_DIR.exists():
-    print(f"DEBUG: Assets folder found! Root contents: {os.listdir(ASSETS_DIR)}")
-    for root, dirs, files in os.walk(ASSETS_DIR):
-        print(f"DEBUG: Walking {root} -> Files: {files}")
-else:
-    print(f"DEBUG: Assets folder NOT found at {ASSETS_DIR}!")
-    print(f"DEBUG: Root dir contents: {os.listdir(BASE_DIR.parent)}")
-
 STATICFILES_DIRS = [
-    str(BASE_DIR / 'static'),
-    str(ASSETS_DIR), # Add root assets
-]
-
-STATICFILES_FINDERS = [
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    BASE_DIR / 'static',
 ]
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
