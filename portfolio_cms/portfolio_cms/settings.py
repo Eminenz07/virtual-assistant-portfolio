@@ -130,9 +130,20 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# DEBUG STATIC FILES
+print(f"DEBUG: BASE_DIR is {BASE_DIR}")
+ASSETS_DIR = BASE_DIR.parent / 'assets'
+print(f"DEBUG: Assets path is {ASSETS_DIR}")
+if ASSETS_DIR.exists():
+    print(f"DEBUG: Assets folder found! Contents: {os.listdir(ASSETS_DIR)}")
+else:
+    print(f"DEBUG: Assets folder NOT found at {ASSETS_DIR}!")
+    print(f"DEBUG: Root dir contents: {os.listdir(BASE_DIR.parent)}")
+
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
-    BASE_DIR.parent / 'assets', # Add root assets
+    ASSETS_DIR, # Add root assets
 ]
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
