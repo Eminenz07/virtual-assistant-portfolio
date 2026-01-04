@@ -144,8 +144,13 @@ else:
     print(f"DEBUG: Root dir contents: {os.listdir(BASE_DIR.parent)}")
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',
-    ASSETS_DIR, # Add root assets
+    str(BASE_DIR / 'static'),
+    str(ASSETS_DIR), # Add root assets
+]
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
